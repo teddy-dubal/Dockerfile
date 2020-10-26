@@ -36,7 +36,7 @@ class DockerCliClient(DockerBaseClient):
         Build dockerfile
         """
         instanceName = name.replace('/','-').replace(':','-')
-        cmdBuilderInstance = ['docker','buildx', 'create','--name',instanceName]
+        cmdBuilderInstance = ['docker','buildx', 'create','--use','--name',instanceName]
         Command.execute(cmdBuilderInstance)
 
         cmdBuilderInstanceUse = ['docker','buildx', 'use',instanceName]
