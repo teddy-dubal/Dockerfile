@@ -35,6 +35,12 @@ class DockerCliClient(DockerBaseClient):
         """
         Build dockerfile
         """
+        cmdBuilderInstance = ['docker','buildx', 'create','--name',name]
+        Command.execute(cmdBuilderInstance)
+
+        cmdBuilderInstanceUse = ['docker','buildx', 'use',name]
+        Command.execute(cmdBuilderInstanceUse)
+        
         cmd = ['docker','buildx', 'build','--platform', 'linux/arm64,linux/arm/v7','--tag', name, os.path.dirname(path)]
 
         if nocache:
