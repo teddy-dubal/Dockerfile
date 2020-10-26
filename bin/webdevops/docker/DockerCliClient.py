@@ -21,8 +21,12 @@
 import os, subprocess, tempfile
 from .DockerBaseClient import DockerBaseClient
 from webdevops import Command
+import time
 
 class DockerCliClient(DockerBaseClient):
+
+    def uniqid(prefix = ''):
+        return prefix + hex(int(time()))[2:10] + hex(int(time()*1000000) % 0x100000)[2:7]
 
     def pull_image(self, name, tag):
         """
@@ -36,11 +40,8 @@ class DockerCliClient(DockerBaseClient):
         Build dockerfile
         """
 
-        cmdContextInstance = ['docker','context', 'ls']
-        print Command.execute(cmdContextInstance)
-
-        instanceName = name.replace('/','-').replace(':','-')
-        cmdBuilderInstance = ['docker','buildx', 'create','--use','--name',instanceName]
+        instanceName = name.replace('/','-').replace(':','-')+self.uniqid() 
+        cmdBuilderInstance = ['docker','buildx', 'create','--name',instanceName]
         Command.execute(cmdBuilderInstance)
 
         cmdBuilderInstanceUse = ['docker','buildx', 'use',instanceName]
