@@ -18,14 +18,16 @@
 # OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import os, subprocess, tempfile,time
+import os, subprocess, tempfile,random,string
 from .DockerBaseClient import DockerBaseClient
 from webdevops import Command
 
 class DockerCliClient(DockerBaseClient):
 
-    def uniqid(prefix = ''):
-        return prefix + hex(int(time()))[2:10] + hex(int(time()*1000000) % 0x100000)[2:7]
+    def uniqid(length):
+        letters = string.ascii_letters
+        result_str = ''.join(random.choice(letters) for i in range(length))
+        return result_str
 
     def pull_image(self, name, tag):
         """
@@ -39,7 +41,7 @@ class DockerCliClient(DockerBaseClient):
         Build dockerfile
         """
         print self.uniqid()
-        instanceName = name.replace('/','-').replace(':','-')+ "_" +self.uniqid() 
+        instanceName = name.replace('/','-').replace(':','-')+ "_" +self.uniqid(8) 
         cmdBuilderInstance = ['docker','buildx', 'create','--name',instanceName]
         Command.execute(cmdBuilderInstance)
 
