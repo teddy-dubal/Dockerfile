@@ -18,10 +18,9 @@
 # OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import os, subprocess, tempfile
+import os, subprocess, tempfile,time
 from .DockerBaseClient import DockerBaseClient
 from webdevops import Command
-import time
 
 class DockerCliClient(DockerBaseClient):
 
@@ -40,7 +39,7 @@ class DockerCliClient(DockerBaseClient):
         Build dockerfile
         """
 
-        instanceName = name.replace('/','-').replace(':','-')+uniqid() 
+        instanceName = name.replace('/','-').replace(':','-')+self.uniqid() 
         cmdBuilderInstance = ['docker','buildx', 'create','--name',instanceName]
         Command.execute(cmdBuilderInstance)
 
