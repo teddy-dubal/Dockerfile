@@ -41,7 +41,7 @@ class DockerCliClient(DockerBaseClient):
         Build dockerfile
         """
         
-        instanceName = name.replace('/','-').replace(':','-')
+        # instanceName = name.replace('/','-').replace(':','-')
         
         # print(instanceName + " **************************************")
         # cmdStop = ['docker','stop',"buildx_buildkit_"+instanceName+"0"]
