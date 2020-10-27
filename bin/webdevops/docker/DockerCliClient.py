@@ -43,20 +43,21 @@ class DockerCliClient(DockerBaseClient):
         
         instanceName = name.replace('/','-').replace(':','-')
         
-        print(instanceName + " **************************************")
-        cmdStop = ['docker','stop',"buildx_buildkit_"+instanceName+"0"]
-        Command.execute(cmdStop)
+        # print(instanceName + " **************************************")
+        # cmdStop = ['docker','stop',"buildx_buildkit_"+instanceName+"0"]
+        # Command.execute(cmdStop)
 
-        cmdRm = ['docker','rm',"buildx_buildkit_"+instanceName+"0"]
-        Command.execute(cmdRm)
+        # cmdRm = ['docker','rm',"buildx_buildkit_"+instanceName+"0"]
+        # Command.execute(cmdRm)
         
-        cmdBuilderInstance = ['docker','buildx', 'create','--name',instanceName]
-        Command.execute(cmdBuilderInstance)
+        # cmdBuilderInstance = ['docker','buildx', 'create','--name',instanceName]
+        # Command.execute(cmdBuilderInstance)
 
-        cmdBuilderInstanceUse = ['docker','buildx', 'use',instanceName]
-        Command.execute(cmdBuilderInstanceUse)
+        # cmdBuilderInstanceUse = ['docker','buildx', 'use',instanceName]
+        # Command.execute(cmdBuilderInstanceUse)
         
-        cmd = ['docker','buildx', 'build','--platform', 'linux/arm64,linux/arm/v7','--tag', name, os.path.dirname(path)]
+        # cmd = ['docker','buildx', 'build','--platform', 'linux/arm64,linux/arm/v7','--tag', name, os.path.dirname(path)]
+        cmd = ['docker', 'build','--tag', name, os.path.dirname(path)]
 
         if nocache:
             cmd.append('--no-cache')
