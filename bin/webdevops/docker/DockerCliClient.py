@@ -43,7 +43,7 @@ class DockerCliClient(DockerBaseClient):
         
         instanceName = name.replace('/','-').replace(':','-')
         
-        print instanceName + " **************************************"
+        print(instanceName + " **************************************")
         cmdStop = ['docker','stop',instanceName]
         Command.execute(cmdStop)
 
