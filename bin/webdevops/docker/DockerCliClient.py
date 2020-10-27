@@ -40,8 +40,11 @@ class DockerCliClient(DockerBaseClient):
         """
         Build dockerfile
         """
-        print self.uniqid()
-        instanceName = name.replace('/','-').replace(':','-')+ "_" +self.uniqid(8) 
+        
+        instanceName = name.replace('/','-').replace(':','-')
+        cmdPs = ['docker','ps']
+        Command.execute(cmdPs)
+        
         cmdBuilderInstance = ['docker','buildx', 'create','--name',instanceName]
         Command.execute(cmdBuilderInstance)
 
