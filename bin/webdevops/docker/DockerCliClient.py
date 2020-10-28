@@ -43,12 +43,11 @@ class DockerCliClient(DockerBaseClient):
         
         instanceName = name.replace('/','-').replace(':','-')
         
-        # print(instanceName + " **************************************")
-        cmdStop = ['docker','buildx','stop',instanceName]
-        Command.execute(cmdStop)
+        # cmdStop = ['docker','buildx','stop',instanceName]
+        # Command.execute(cmdStop)
 
-        cmdRm = ['docker','buildx','rm',instanceName]
-        Command.execute(cmdRm)
+        # cmdRm = ['docker','buildx','rm',instanceName]
+        # Command.execute(cmdRm)
         
         cmdBuilderInstance = ['docker','buildx', 'create','--name',instanceName]
         Command.execute(cmdBuilderInstance)
