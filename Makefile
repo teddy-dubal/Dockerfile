@@ -22,7 +22,7 @@ build:
 bootstrap: webdevops/bootstrap webdevops/ansible
 base:      webdevops/base webdevops/base-app webdevops/storage
 service:   webdevops/ssh webdevops/vsftp webdevops/postfix
-php-cli:   webdevops/php/7.4
+php-cli:   webdevops/php-official
 php:       webdevops/php webdevops/php-apache webdevops/php-nginx
 php-dev:   webdevops/php-dev webdevops/php-apache-dev webdevops/php-nginx-dev
 hhvm:      webdevops/hhvm webdevops/hhvm-apache webdevops/hhvm-nginx
