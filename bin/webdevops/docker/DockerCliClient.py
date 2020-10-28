@@ -50,11 +50,11 @@ class DockerCliClient(DockerBaseClient):
         cmdRm = ['docker','buildx','rm',instanceName]
         Command.execute(cmdRm)
         
-        cmdBuilderInstance = ['docker','buildx', 'create','--name','--use',instanceName]
+        cmdBuilderInstance = ['docker','buildx', 'create','--name',instanceName]
         Command.execute(cmdBuilderInstance)
 
-        # cmdBuilderInstanceUse = ['docker','buildx', 'use',instanceName]
-        # Command.execute(cmdBuilderInstanceUse)
+        cmdBuilderInstanceUse = ['docker','buildx', 'use',instanceName]
+        Command.execute(cmdBuilderInstanceUse)
         
         cmd = ['docker','buildx', 'build','--platform', 'linux/arm64,linux/arm/v7','--tag', name, os.path.dirname(path)]
 
