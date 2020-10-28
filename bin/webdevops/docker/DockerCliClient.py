@@ -24,11 +24,6 @@ from webdevops import Command
 
 class DockerCliClient(DockerBaseClient):
 
-    def uniqid(length):
-        letters = string.ascii_letters
-        result_str = ''.join(random.choice(letters) for i in range(length))
-        return result_str
-
     def pull_image(self, name, tag):
         """
         Build dockerfile
